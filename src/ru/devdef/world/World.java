@@ -1,4 +1,4 @@
-package ru.devdef;
+package ru.devdef.world;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,15 +15,20 @@ import java.awt.event.KeyEvent;
  * Time: 15:18
  * To change this template use File | Settings | File Templates.
  */
-public class Map extends JPanel implements ActionListener{
+public class World extends JPanel implements ActionListener{
 
     Timer timer = new Timer(20, this);
     Image img = new ImageIcon("res/map.jpg").getImage();
     Hero hero = new Hero();
+    Cursor cursor;
 
-    public Map(){
+    public World(){
         timer.start();
         addKeyListener(new MyKeyAdapter());
+
+        //cursor = new Cursor(Cursor.CUSTOM_CURSOR);
+
+        setHeroCursor();
         setFocusable(true);
     }
 
@@ -37,13 +42,21 @@ public class Map extends JPanel implements ActionListener{
     }
 
     public void paint(Graphics g){
-        g = (Graphics2D) g;
+        //g = (Graphics2D) g;
         g.drawImage(img, 0, 0, null);
         g.drawImage(hero.img, hero.x, hero.y, null);
+
     }
 
     public void actionPerformed(ActionEvent action){
         hero.move();
         repaint();
+    }
+    private void setHeroCursor(){
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Image curImg = kit.getImage("res/cursor.png");
+        Point hotspot = new Point(0,0);
+        cursor = kit.createCustomCursor(curImg, hotspot, "myCursor");
+        setCursor(cursor);
     }
 }

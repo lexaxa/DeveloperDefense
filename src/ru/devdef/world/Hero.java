@@ -1,4 +1,4 @@
-package ru.devdef;
+package ru.devdef.world;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,15 +31,11 @@ public class Hero {
         if( key == KeyEvent.VK_LEFT){ dx = -5;}
         if( key == KeyEvent.VK_UP){ dy = -5;}
         if( key == KeyEvent.VK_DOWN){ dy =5;}
-        System.out.println("KeyPressed:" + key);
     }
 
     public void keyReleased(KeyEvent e){
         int key = e.getKeyCode();
         if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_LEFT){ dx = 0;}
         if(key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN){ dy = 0;}
-        System.out.println("KeyReleased:" + key);
     }
-
-
 }
